@@ -14,6 +14,7 @@ body {
   grid-template: repeat(4, 1fr) / repeat(4, 1fr);
   gap: .3vmin;
   padding: .5vmin;
+  box-shadow: 0.5vmin 1.5vmin 10vmin #0002;
 }
 
 #field>div {
