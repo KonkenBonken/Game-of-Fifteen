@@ -14,6 +14,13 @@ for (const n of [...Array(size ** 2).keys()].slice(1)) {
 
 field.append(empty);
 
+for (const cell of cells)
+	cell.addEventListener('click', () => {
+		if (!cell.classList.contains('neighbor')) return;
+		swapNodes(cell, empty);
+		setNeighbors();
+	});
+
 function shuffle() {
 	const elements = [...cells, empty];
 	for (let i = elements.length - 1; i > 0; i--) {
@@ -42,9 +49,16 @@ function setNeighbors() {
 	})
 }
 
+function swapNodes(cell1, cell2) {
+	const temp = document.createComment('');
+	cell2.replaceWith(temp);
+	cell1.replaceWith(cell2);
+	temp.replaceWith(cell1);
+}
+
 function start() {
 	shuffle();
-	setNeighbors()
+	setNeighbors();
 }
 
 start();
