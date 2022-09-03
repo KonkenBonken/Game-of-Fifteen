@@ -29,6 +29,12 @@ function shuffle() {
 		swapNodes(cell, empty);
 		setNeighbors();
 	}
+	while ([...cells].findIndex(cell => cell == empty) !== 15) {
+		const neighbors = field.querySelectorAll('.neighbor'),
+			cell = [...neighbors].at(-1);
+		swapNodes(cell, empty);
+		setNeighbors();
+	}
 }
 
 function setNeighbors() {
