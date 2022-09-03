@@ -24,6 +24,7 @@ body {
   place-items: center;
   font-size: 5vmin;
   user-select: none;
+  transition: filter 100ms ease-out;
 }
 
 #field>.neighbor {
