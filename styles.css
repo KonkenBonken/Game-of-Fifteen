@@ -1,3 +1,32 @@
 body {
   height: 100vh;
+  margin: 0;
+  background: linear-gradient(20deg, #76BA99, #90d4b3);
+  display: grid;
+  place-items: center;
+}
+
+#field {
+  background: linear-gradient(20deg, #EDDFB3, #f4eacd);
+  width: 70vmin;
+  height: 70vmin;
+  display: grid;
+  grid-template: repeat(4, 1fr) / repeat(4, 1fr);
+  gap: .3vmin;
+  padding: .5vmin;
+}
+
+#field>div {
+  background: linear-gradient(20deg, #CA955C, #d4a16b);
+  color: #876445;
+  display: grid;
+  place-items: center;
+  font-size: 5vmin;
+  user-select: none;
+}
+
+
+#empty {
+  pointer-events: none;
+  visibility: hidden;
 }
