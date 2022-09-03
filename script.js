@@ -22,12 +22,13 @@ for (const cell of cells)
 	});
 
 function shuffle() {
-	const elements = [...cells, empty];
-	for (let i = elements.length - 1; i > 0; i--) {
-		const j = floor(random() * (i + 1));
-		[elements[i], elements[j]] = [elements[j], elements[i]];
+	setNeighbors();
+	for (let i in [...Array(1e3)]) {
+		const neighbors = field.querySelectorAll('.neighbor'),
+			cell = neighbors[floor(random() * neighbors.length)];
+		swapNodes(cell, empty);
+		setNeighbors();
 	}
-	field.append(...elements);
 }
 
 function setNeighbors() {
@@ -58,7 +59,6 @@ function swapNodes(cell1, cell2) {
 
 function start() {
 	shuffle();
-	setNeighbors();
 }
 
 start();
