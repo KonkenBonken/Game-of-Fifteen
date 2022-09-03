@@ -39,3 +39,13 @@ body {
   pointer-events: none;
   visibility: hidden;
 }
+
+#field>[style*="transform:"] {
+  animation: slide 300ms ease forwards;
+}
+
+@keyframes slide {
+  to {
+    transform: translate(0)
+  }
+}

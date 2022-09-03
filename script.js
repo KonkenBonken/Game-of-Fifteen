@@ -25,12 +25,12 @@ function shuffle() {
 	for (let i in [...Array(1e3)]) {
 		const neighbors = field.querySelectorAll('.neighbor'),
 			cell = neighbors[floor(random() * neighbors.length)];
-		swapNodes(cell, empty);
+		swapNodes(cell, empty, true);
 	}
 	while ([...cells].findIndex(cell => cell == empty) !== 15) {
 		const neighbors = field.querySelectorAll('.neighbor'),
 			cell = [...neighbors].at(-1);
-		swapNodes(cell, empty);
+		swapNodes(cell, empty, true);
 	}
 }
 
@@ -53,11 +53,24 @@ function setNeighbors() {
 	})
 }
 
-function swapNodes(cell1, cell2) {
+function swapNodes(cell, empty, instant = false) {
 	const temp = document.createComment('');
-	cell2.replaceWith(temp);
-	cell1.replaceWith(cell2);
-	temp.replaceWith(cell1);
+
+	if (!instant) {
+		const from = cell.getBoundingClientRect(),
+			to = empty.getBoundingClientRect(),
+			Δx = from.x - to.x,
+			Δy = from.y - to.y;
+
+		cell.style.transform = `translate(${Δx}px,${Δy}px)`;
+		if (cell.timeout) clearTimeout(cell.timeout);
+		cell.timeout = setTimeout(() => cell.style.transform = '', 300);
+	}
+
+	empty.replaceWith(temp);
+	cell.replaceWith(empty);
+	temp.replaceWith(cell);
+
 	setNeighbors();
 }
 
