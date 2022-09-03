@@ -25,6 +25,14 @@ body {
   user-select: none;
 }
 
+#field>.neighbor {
+  filter: brightness(.9);
+  cursor: pointer;
+}
+
+#field>.neighbor:hover {
+  filter: brightness(.8);
+}
 
 #empty {
   pointer-events: none;

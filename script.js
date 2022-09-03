@@ -23,8 +23,28 @@ function shuffle() {
 	field.append(...elements);
 }
 
+function setNeighbors() {
+	const Ei = [...cells].findIndex(cell => cell == empty),
+		Ex = Ei % size,
+		Ey = floor(Ei / size);
+
+	[...cells].forEach((cell, i) => {
+		const x = i % size,
+			y = floor(i / size);
+
+		if (
+			y == Ey && abs(x - Ex) == 1 ||
+			x == Ex && abs(y - Ey) == 1
+		)
+			cell.classList.add('neighbor');
+		else
+			cell.classList.remove('neighbor');
+	})
+}
+
 function start() {
 	shuffle();
+	setNeighbors()
 }
 
 start();
