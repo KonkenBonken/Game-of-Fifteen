@@ -18,7 +18,6 @@ for (const cell of cells)
 	cell.addEventListener('click', () => {
 		if (!cell.classList.contains('neighbor')) return;
 		swapNodes(cell, empty);
-		setNeighbors();
 	});
 
 function shuffle() {
@@ -27,13 +26,11 @@ function shuffle() {
 		const neighbors = field.querySelectorAll('.neighbor'),
 			cell = neighbors[floor(random() * neighbors.length)];
 		swapNodes(cell, empty);
-		setNeighbors();
 	}
 	while ([...cells].findIndex(cell => cell == empty) !== 15) {
 		const neighbors = field.querySelectorAll('.neighbor'),
 			cell = [...neighbors].at(-1);
 		swapNodes(cell, empty);
-		setNeighbors();
 	}
 }
 
@@ -61,6 +58,7 @@ function swapNodes(cell1, cell2) {
 	cell2.replaceWith(temp);
 	cell1.replaceWith(cell2);
 	temp.replaceWith(cell1);
+	setNeighbors();
 }
 
 function start() {
