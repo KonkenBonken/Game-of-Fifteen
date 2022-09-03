@@ -41,7 +41,7 @@ body {
 }
 
 #field>[style*="transform:"] {
-  animation: slide 300ms ease forwards;
+  animation: slide 300ms ease-out forwards;
 }
 
 @keyframes slide {
