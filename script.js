@@ -105,7 +105,10 @@ function displayDoneIfDone() {
 }
 
 function start() {
-	shuffle();
+	do {
+		shuffle();
+	} while (isDone())
+
 	startTimer();
 	timer.classList.remove('finish');
 }
