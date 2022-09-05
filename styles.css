@@ -28,7 +28,7 @@ body {
   transition: filter 100ms ease-out;
 }
 
-#field>.neighbor {
+#field>.neighbor, #restart:hover {
   filter: brightness(.9);
   cursor: pointer;
 }
@@ -58,4 +58,29 @@ body {
   font-size: 5vmin;
   color: #463322;
   letter-spacing: .15ch;
+  z-index: 2;
+}
+
+#timer.finish {
+  top: 38vh;
+  font-size: 21vmin;
+}
+
+#restart {
+  display: none;
+}
+
+.finish+#restart {
+  display: grid;
+  position: fixed;
+  z-index: 2;
+  cursor: pointer;
+  background: linear-gradient(20deg, #ac773e, #784c1d);
+  color: #2a1e13;
+  width: 20vw;
+  height: 10vh;
+  top: 60vh;
+  border-radius: 2vmin;
+  place-items: center;
+  font-size: 5vh;
 }

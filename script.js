@@ -1,6 +1,7 @@
 const size = 4,
 	{ floor, abs, random } = Math,
 	timer = document.querySelector('#timer'),
+	restart = document.querySelector('#restart'),
 	field = document.querySelector('#field'),
 	cells = field.getElementsByTagName('div'),
 	empty = document.createElement('div');
@@ -19,6 +20,7 @@ for (const cell of cells)
 	cell.addEventListener('click', () => {
 		if (!cell.classList.contains('neighbor')) return;
 		swapNodes(cell, empty);
+		displayDoneIfDone();
 	});
 
 function shuffle() {
@@ -75,6 +77,8 @@ function swapNodes(cell, empty, instant = false) {
 	setNeighbors();
 }
 
+let stopClock = () => false;
+
 function startTimer() {
 	const timerStart = Date.now(),
 		interval = setInterval(() => {
@@ -82,12 +86,30 @@ function startTimer() {
 				text = (new Date(time)).toISOString().substring(14, 22);
 			timer.innerText = text;
 		}, 20);
-	return () => clearInterval(interval);
+	stopClock = () => clearInterval(interval);
+}
+
+function isDone() {
+	let index = 1;
+	for (const cell of [...cells].slice(0, -1))
+		if (cell.value != index++)
+			return false;
+	return true;
+}
+
+function displayDoneIfDone() {
+	if (isDone()) {
+		stopClock();
+		timer.classList.add('finish');
+	}
 }
 
 function start() {
 	shuffle();
 	startTimer();
+	timer.classList.remove('finish');
 }
 
 start();
+
+restart.addEventListener('click', start)
