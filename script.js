@@ -1,5 +1,6 @@
 const size = 4,
 	{ floor, abs, random } = Math,
+	timer = document.querySelector('#timer'),
 	field = document.querySelector('#field'),
 	cells = field.getElementsByTagName('div'),
 	empty = document.createElement('div');
@@ -74,8 +75,19 @@ function swapNodes(cell, empty, instant = false) {
 	setNeighbors();
 }
 
+function startTimer() {
+	const timerStart = Date.now(),
+		interval = setInterval(() => {
+			let time = Date.now() - timerStart,
+				text = (new Date(time)).toISOString().substring(14, 22);
+			timer.innerText = text;
+		}, 20);
+	return () => clearInterval(interval);
+}
+
 function start() {
 	shuffle();
+	startTimer();
 }
 
 start();

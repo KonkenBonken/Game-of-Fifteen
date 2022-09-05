@@ -50,3 +50,12 @@ body {
     transform: translate(0)
   }
 }
+
+#timer {
+  position: fixed;
+  top: 8vmin;
+  font-size: 5vmin;
+  color: #463322;
+  font-family: sans-serif;
+  letter-spacing: .15ch;
+}
